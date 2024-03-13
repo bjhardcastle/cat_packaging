@@ -1,4 +1,4 @@
-# non-package organization
+# package organization
 
 ## overview
 - .py files moved to `src/lazynwb`
@@ -58,3 +58,28 @@ path = 's3://codeocean-s3datasetsbucket-1u41qdg42ur9/39490bff-87c9-4ef2-b408-363
 session = lazynwb.LazyNWB(path)
 
 remote_file = lazynwb.open(path)
+```
+
+
+## dependency management
+[`npc_io/pyproject.toml`](https://github.com/AllenInstitute/npc_io/blob/47c2a685d9f32733736b48b0c1d639b5e6cf77b9/pyproject.toml#L11)
+specifies:
+```
+dependencies = [
+    ...
+    "universal-pathlib<0.2.0",
+    ...
+]
+```
+but pip will happily install `"universal-pathlib==0.2.0"` for us, which will
+likely break something in `npc_io`, because it
+has no efficient way of checking the dependency specifications of every package
+our project uses.
+
+However, there are popular third-party tools that *do* check compatibility between dependencies, like
+[`poetry`](https://python-poetry.org/) and
+[`pdm`](https://pdm-project.org/latest/). 
+
+`pdm` is recommended over `poetry`, as it follows 
+the standards for metadata in `pyproject.toml`, so your projects aren't
+locked into using any particular tool in the future.
