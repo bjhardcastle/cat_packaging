@@ -32,3 +32,9 @@ git clone https://github.com/bjhardcastle/lazynwb
 cd lazynwb
 pdm install
 ```
+
+## publishing 
+After manually updating the version in [`pyproject.toml`](pyproject.toml):
+```
+pdm publish
+```

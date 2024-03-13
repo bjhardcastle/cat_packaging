@@ -41,7 +41,9 @@ pip install -e .
 ```
 
 - editable install makes the package available for import
-- editing the source code will take effect the next time the package is imported
+- the package is built and installed according to the metadata in [`pyproject.toml`](pyproject.toml)
+- editing the source code will take effect the next time the package is imported:
+  no need to re-run the install command
 
 ## usage
 
@@ -83,6 +85,20 @@ remote_file = lazynwb.open(path)
 
 Caution: if there are multiple objects with the same name in the package, it will be
 ambiguous which one is imported! If you're going to do this, everything needs a unique name.
+
+The more-correct thing to do here is to import each object in
+`__init__.py` individually, and add them **as strings** to the reserved-variable `__all__`:
+```python
+from utils import open
+from nwb import LazyNWB
+
+__all__ = [
+    "open",
+    "LazyNWB",
+]
+```
+I just find this too much effort during early development, when things are
+added/renamed often. A case of *"practicality beats purity"*.
 
 ## dependency management
 One of the dependencies in the project specifies its own dependencies as follows: 
