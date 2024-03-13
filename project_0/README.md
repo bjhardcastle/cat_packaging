@@ -2,12 +2,14 @@
 
 
 ## overview
-- `nwb.py` uses a function from `utils.py`
-- all required dependenices need to be manually installed 
+
+- [`nwb.py`](nwb.py) imports [`utils.py`](utils.py) and uses one of its functions
+- all required dependenices need to be installed manually
+    - ideally a `requirements.txt` should be provided
 
 
 ## setup
-Create venv:
+Change directory into this folder and create a venv:
 ```
 python -m venv .venv
 ```
@@ -15,12 +17,12 @@ Activate venv:
 ```
 .venv\scripts\activate
 ```
-Installa required packages:
+Install required packages:
 ```
 pip install h5py zarr remfile npc_io
 ```
 
-## using functions
+## usage
 
 While our current working directory contains the .py files, we can import and use them:
 
@@ -50,3 +52,6 @@ Traceback (most recent call last):
     import utils
 ModuleNotFoundError: No module named 'utils'
 ```
+
+Bundling these files into a package will make it possible to use them anywhere,
+regardless of our current working directory.
