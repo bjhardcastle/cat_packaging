@@ -22,7 +22,7 @@ pip install h5py zarr remfile npc_io
 
 ## using functions
 
-While our current working directory contains the .py files, we can import them:
+While our current working directory contains the .py files, we can import and use them:
 
 ```python
 import nwb
@@ -33,4 +33,20 @@ path = 's3://codeocean-s3datasetsbucket-1u41qdg42ur9/39490bff-87c9-4ef2-b408-363
 session = nwb.LazyNWB()
 
 remote_zarr_file = utils.open(path)
+```
+
+However, if we're working in any other directory, this import in [`nwb.py`](nwb.py), will fail:
+```python
+import utils
+```
+as Python looks for a file called `utils` in the current directory or on
+its global path:
+
+```python
+>cd .. && python -c "from project_0 import nwb"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\ben.hardcastle\github\cat_packaging\project_0\nwb.py", line 11, in <module>
+    import utils
+ModuleNotFoundError: No module named 'utils'
 ```

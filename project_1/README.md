@@ -2,9 +2,23 @@
 
 ## overview
 - .py files moved to `src/lazynwb`
-- empty `__init__.py` has been added 
+    - `lazynwb` will be our top-level package: the thing we import in Python
+- an empty [`__init__.py`](src/lazynwb/__init__.py) has been added 
+    - this signals to Python and other tools that `lazynwb` is a package
+    - it can be used to define what is available when `lazynwb` is imported
 - `pyproject.toml` has been added and filled out
-- imported `utils` from package in [`nwb.py`](src/lazynwb/nwb.py)
+- [`nwb.py`](src/lazynwb/nwb.py) was modified:
+    ```python
+    import utils
+    ```
+    became:
+    ```python
+    import lazynwb.utils as utils
+    ```
+    - it no longer relies on a relative import, instead using the absolute "path" to
+      `utils` within the `lazynwb` folder
+    - note: `import lazynwb.utils` works fine too - it would just require doing a
+      find+replace on `utils` -> `lazynwb.utils`
 
 ## setup
 Create venv:
