@@ -1,15 +1,20 @@
 [project]
-name = "lazynwb"    # name of the importable package
-requires-python = ">=3.9"
-dependencies = [
+name = "lazynwb"            # name of the importable package
+version = "0.1.0"           # <major>.<minor>.<patch/micro>
+requires-python = ">=3.9"   # can also include an upper bound
+dependencies = [            
     "npc-io",
     "h5py",
     "zarr",
     "remfile",
 ]
-version = "0.1.0"
+# - dependencies without a version spec indicate "latest version"
+# - finding out which versions are compatible with your project is a separate
+#   problem, one which tools like Poetry and PDM are designed to solve
 
 [build-system]
+# - this section is required for building the package for distribution
+# - setuptools is commonly used, but other build backends are available
 requires = [
     "setuptools>=61",
     "wheel",
@@ -20,3 +25,4 @@ build-backend = "setuptools.build_meta"
 where = [
     "src",
 ]
+# - this tells setuptools to look for packages in the "src" directory
