@@ -16,7 +16,3 @@ organizations:
 ## setup
 - clone this repo
 - go through the project readme files in order
-
-## note 
-- the actual Python examples provided may not work without AWS credentials: these
-  can be installed in `~/.aws/` or added to a `.env` file in the current working directory
